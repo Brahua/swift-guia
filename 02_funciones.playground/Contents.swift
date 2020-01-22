@@ -266,6 +266,7 @@ reversedNames = names.sorted {$0>$1}
 let digitNames = [0:"Cero", 1:"Uno", 2:"Dos", 3:"Tres", 4:"Cuatro",
                   5:"Cinco", 6:"Seis", 7:"Siete", 8:"Ocho", 9:"Nueve"]
 let numbers = [16, -58, 510, -2127]
+
 let numberStrings = numbers.map { (number) -> String in
     var esNegativo: Bool = false
     let menos: String = "Menos"
@@ -307,6 +308,7 @@ let incrementByTen = makeIncrementer(forIncrement: 10)
 incrementByTen()
 incrementByTen()
 incrementByTen()
+
 
 let incrementBySeven = makeIncrementer(forIncrement: 7)
 incrementBySeven()

@@ -58,6 +58,8 @@ square.center
 let initialSquareCenter = square.center
 square.center = Point(x: 18, y: 3)
 
+
+
 struct Cuboid{
     var width = 0.0, height = 0.0, depth = 0.0
     var volume: Double{
@@ -103,8 +105,12 @@ struct SomeStruct {
 
 var instanceStr = SomeStruct()
 
+
 var otherInstanceStr = SomeStruct()
 
+print(SomeStruct.storedTypeProperty)
+SomeStruct.storedTypeProperty = "JOSUE"
+print(SomeStruct.storedTypeProperty)
 SomeStruct.computedTypeProperty
 
 enum SomeEnum{
@@ -126,3 +132,4 @@ class SomeClass{
         return 108
     }
 }
+
