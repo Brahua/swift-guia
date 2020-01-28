@@ -18,7 +18,7 @@ import UIKit
  
  ¿Cuándo debe usar estructuras?
  Se recomienda usar struct de forma predeterminada. Las estructuras también son útiles en estos escenarios:
-    - Utilice estructuras para tipos de datos simples. Piense en la base de datos de objetos que desea pasar alrededor de su código, como NewsItem, Tasko User. Dado que están tan bien definidos y, a menudo, no necesitan acomodar relaciones complejas entre objetos, es más sencillo usar estructuras.
+    - Utilice estructuras para tipos de datos simples. Piense en la base de datos de objetos que desea pasar alrededor de su código, como NewsItem, Task o User. Dado que están tan bien definidos y, a menudo, no necesitan acomodar relaciones complejas entre objetos, es más sencillo usar estructuras.
     - En un entorno multiproceso , por ejemplo, con una conexión de base de datos que se abre en un subproceso diferente, las estructuras son más seguras . Se pueden copiar de un hilo a otro, sin correr el riesgo de una condición de carrera o punto muerto. Las clases no tienen esta seguridad inherente, a menos que sean deliberadamente seguras para subprocesos .
     - Cuando las propiedades de una estructura son principalmente tipos de valor también, por ejemplo String, tiene sentido envolverlas en una estructura en lugar de una clase. Está bien usar estructuras dentro de los tipos de clase, pero preste especial atención si usa clases dentro de los tipos de estructura. Las clases son tipos de referencia, así que si no sabes que tu estructura hace referencia a una instancia de clase compartida, ¡estás en problemas!
  

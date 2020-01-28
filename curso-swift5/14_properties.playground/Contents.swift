@@ -1,8 +1,5 @@
 import UIKit
 
-
-//Stored Properties
-
 struct FixedLengthRange {
     var firstValue : Int
     let length : Int
@@ -11,14 +8,8 @@ struct FixedLengthRange {
 var rangeOfThreeItems = FixedLengthRange(firstValue: 0, length: 3)
 rangeOfThreeItems.firstValue = 6
 
-let rangeOfFourItems = FixedLengthRange(firstValue: 0, length: 4) // -> constante: no se puede modificar sus propiedades
+let rangeOfFourItems = FixedLengthRange(firstValue: 0, length: 4)
 //rangeOfFourItems.firstValue = 5 ESTO DA ERROR...
-
-
-
-
-
-//Lazy Properties -> No se inicializan los valores hasta que se necesita
 
 class DataImporter{
     var filename = "data.txt"
@@ -39,10 +30,6 @@ manager.importer.filename
 manager
 
 
-
-
-
-//Computed Properties -> Variables calculadas (get y set)
 
 struct Point {
     var x = 0.0, y = 0.0
@@ -71,9 +58,7 @@ square.center
 let initialSquareCenter = square.center
 square.center = Point(x: 18, y: 3)
 
-
-
-struct Cuboid{ // -> la variable volume no es posible actualizarla
+struct Cuboid{
     var width = 0.0, height = 0.0, depth = 0.0
     var volume: Double{
         return width * height * depth
@@ -85,10 +70,8 @@ cuboid.volume
 //cuboid.volume = 57.0 error, puesto que la variable es de solo lectura
 
 
+//willSet // didSet
 
-
-
-// Property Observers (willSet - didSet)
 class StepCounter{
     var totalSteps: Int = 0{
         willSet(newTotalSteps){
@@ -104,14 +87,12 @@ class StepCounter{
 
 let stepCounter = StepCounter()
 stepCounter.totalSteps = 200
+
 stepCounter.totalSteps = 520
+
 stepCounter.totalSteps += 1234
 
 
-
-
-
-// ------
 struct SomeStruct {
     var counter = 0
     static var storedTypeProperty = "SOME VALUE"
@@ -122,12 +103,8 @@ struct SomeStruct {
 
 var instanceStr = SomeStruct()
 
-
 var otherInstanceStr = SomeStruct()
 
-print(SomeStruct.storedTypeProperty)
-SomeStruct.storedTypeProperty = "JOSUE"
-print(SomeStruct.storedTypeProperty)
 SomeStruct.computedTypeProperty
 
 enum SomeEnum{
@@ -149,4 +126,3 @@ class SomeClass{
         return 108
     }
 }
-
