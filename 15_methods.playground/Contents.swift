@@ -112,6 +112,7 @@ class Player{
 }
 
 
+
 var player = Player(name: "Juan Gabriel")
 player.complete(level: 1)
 player

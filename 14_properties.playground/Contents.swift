@@ -1,7 +1,7 @@
 import UIKit
 
 
-//Stored Properties
+//1. Stored Properties
 
 struct FixedLengthRange {
     var firstValue : Int
@@ -18,7 +18,7 @@ let rangeOfFourItems = FixedLengthRange(firstValue: 0, length: 4) // -> constant
 
 
 
-//Lazy Properties -> No se inicializan los valores hasta que se necesita
+//2. Lazy Properties -> No se inicializan los valores hasta que se necesita
 
 class DataImporter{
     var filename = "data.txt"
@@ -42,7 +42,7 @@ manager
 
 
 
-//Computed Properties -> Variables calculadas (get y set)
+//3. Computed Properties -> Variables calculadas (get y set)
 
 struct Point {
     var x = 0.0, y = 0.0
@@ -88,7 +88,7 @@ cuboid.volume
 
 
 
-// Property Observers (willSet - didSet)
+//4. Property Observers (willSet - didSet)
 class StepCounter{
     var totalSteps: Int = 0{
         willSet(newTotalSteps){
@@ -111,7 +111,7 @@ stepCounter.totalSteps += 1234
 
 
 
-// ------
+//4. Type Properties
 struct SomeStruct {
     var counter = 0
     static var storedTypeProperty = "SOME VALUE"
@@ -121,8 +121,6 @@ struct SomeStruct {
 }
 
 var instanceStr = SomeStruct()
-
-
 var otherInstanceStr = SomeStruct()
 
 print(SomeStruct.storedTypeProperty)
@@ -137,16 +135,81 @@ enum SomeEnum{
     }
 }
 
-SomeEnum.storedTypeProperty
+SomeEnum.storedTypeProperty = ""
 
 class SomeClass{
     static var storedTypeProperty = "Some Value"
+    //Las clases que heredan de SomeClass no pueden sobreescribir
     static var computedTypeProperty:Int{
         return -9
     }
-    
+    //Las clases que heredan de SomeClass tienen la posibilidad de sobreescribirla
     class var overrideableComputedTypeProperty:Int{
         return 108
     }
 }
 
+
+
+
+
+//5. Mutating methods
+//en class
+class Counter {
+    var count = 0
+    func increment(){
+        self.count += 1
+    }
+    func increment(by amount:Int) {
+        self.count += amount
+    }
+    func reset(){
+        self.count = 0
+    }
+}
+let counter = Counter()
+counter.increment()
+counter.increment(by: 8)
+counter.reset()
+
+//en structs
+struct OtherPoint{
+    var x = 0.0, y = 0.0
+    func isToTheRight(of x:Double) -> Bool {
+        return self.x > x
+    }
+    
+    mutating func moveBy(x deltaX:Double, y deltaY: Double) {
+        //self.x += deltaX
+        //self.y += deltaY
+        self = OtherPoint(x: self.x + deltaX, y: self.y + deltaY)
+    }
+}
+
+
+var somePoint = OtherPoint(x: 4, y: 5)
+somePoint.isToTheRight(of: 1)
+somePoint.isToTheRight(of: 54)
+
+somePoint.moveBy(x: 2, y: -3)
+somePoint.x = 9
+
+//en enums
+enum DifferentStateSwitch{
+    case off, low, high
+    mutating func next(){
+        switch self {
+        case .off:
+            self = .low
+        case .low:
+            self = .high
+        case .high:
+            self = .off
+        }
+    }
+}
+
+var controllerStatus = DifferentStateSwitch.off
+controllerStatus.next()
+controllerStatus.next()
+controllerStatus.next()
